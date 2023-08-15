@@ -28,7 +28,7 @@ class IntroFragment : Fragment() {
         return binding.root
     }
     private fun initView(){
-        binding.introTestNavButton.setOnClickListener { asdf ->
+        binding.introTestNavButton.setOnClickListener { hello ->
             Navigation.findNavController(binding.root).navigate(R.id.action_IntroFragment_to_menuFragment)
         }
     }
