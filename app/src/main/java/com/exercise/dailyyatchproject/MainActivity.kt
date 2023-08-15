@@ -2,6 +2,7 @@ package com.exercise.dailyyatchproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.exercise.dailyyatchproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
