@@ -1,9 +1,14 @@
 package com.exercise.dailyyatchproject.UtilSupply
 
 import android.app.Activity
+import android.content.Context
+import android.os.Handler
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
 class UtilCode {
+    private var toast : Toast? = null
+
     companion object{
         val ucu = UtilCode()
     }
@@ -23,5 +28,15 @@ class UtilCode {
     fun activityPerfectExit(activity : Activity){
         ActivityCompat.finishAffinity(activity)
         System.exit(0)
+    }
+
+    fun makeToast(context : Context, text : String){
+        try {
+            toast?.cancel()
+            toast = Toast.makeText(context,text, Toast.LENGTH_SHORT)
+            toast?.show()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 }

@@ -7,40 +7,78 @@
     tools:context=".YatchFragment.MenuFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/light_blue_600">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@android:drawable/dialog_frame"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/menu_horizontal_30"
+            app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
+            app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"
+            app:layout_constraintTop_toTopOf="@+id/menu_horizontal_05" />
 
         <Button
             android:id="@+id/menu_test_nav_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="15dp"
+
             android:text="game"
-            app:layout_constraintBottom_toTopOf="@+id/menu_horizontal_50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="40sp"
+
+            app:layout_constraintBottom_toTopOf="@+id/menu_horizontal_65"
+            app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
+            app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"
+            app:layout_constraintTop_toTopOf="@+id/menu_horizontal_30" />
 
         <Button
             android:id="@+id/menu_test_nav_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="15dp"
             android:text="history"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menu_horizontal_50" />
+            app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
+            app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"
+            app:layout_constraintTop_toBottomOf="@+id/menu_test_nav_game" />
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/menu_horizontal_50"
+            android:id="@+id/menu_horizontal_05"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.05" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/menu_vertical_50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/menu_horizontal_30"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/menu_horizontal_65"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/menu_vertical_15"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/menu_vertical_85"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

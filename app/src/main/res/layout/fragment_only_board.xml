@@ -11,14 +11,104 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/only_board_text_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="onlyBoard"
+            android:text="Yatch Board"
+            android:textAlignment="center"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/only_board_user_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/only_board_text_title"/>
+
+        <FrameLayout
+            android:id="@+id/only_board_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_blue_A200"
+            android:alpha="0.5"
+            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal10"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal79"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/board_next"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:text="save &amp; next"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal85" />
+
+        <TextView
+            android:id="@+id/only_board_text_user"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:maxLines="1"
+            android:text="um jun sik"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal85"
+
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal79" />
+        <TextView
+            android:id="@+id/only_board_text_score"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:maxLines="1"
+            android:text="Score : 0"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal85"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical40"
+            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal79" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_horizontal10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_horizontal79"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_horizontal85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_vertical40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

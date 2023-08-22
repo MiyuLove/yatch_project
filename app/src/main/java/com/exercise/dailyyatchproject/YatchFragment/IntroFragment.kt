@@ -12,7 +12,9 @@ import com.exercise.dailyyatchproject.UtilSupply.UtilCode.Companion.ucu
 import com.exercise.dailyyatchproject.databinding.FragmentIntroBinding
 
 class IntroFragment : Fragment() {
-    private lateinit var binding : FragmentIntroBinding
+    private var _binding : FragmentIntroBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -21,15 +23,18 @@ class IntroFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentIntroBinding.inflate(inflater, container, false)
+        _binding = FragmentIntroBinding.inflate(inflater, container, false)
 
         initView()
 
         return binding.root
     }
     private fun initView(){
-        binding.introTestNavButton.setOnClickListener { hello ->
-            Navigation.findNavController(binding.root).navigate(R.id.action_IntroFragment_to_menuFragment)
-        }
+        binding.introTestNavButton.animate()
+            .alpha(1f)
+            .setDuration(1000)
+            .withEndAction({
+                Navigation.findNavController(binding.root).navigate(R.id.action_IntroFragment_to_menuFragment)
+            })
     }
 }
