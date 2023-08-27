@@ -4,28 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@drawable/user_board_item_background">
 
     <ImageView
         android:id="@+id/user_board_profile_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/user_board_item_horizontal20"
+        app:layout_constraintStart_toStartOf="@+id/user_board_item_horizontal5"
+        app:layout_constraintTop_toTopOf="@+id/user_board_item_horizontal25" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="nickname"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        android:fontFamily="@font/base_font"
+        android:text="닉네임"
+        android:textSize="35sp"
+        android:textColor="@color/recycler_view_item_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/user_board_profile_nickname"
+        app:layout_constraintStart_toStartOf="@+id/user_board_item_horizontal20"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -33,40 +37,55 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:maxLines="2"
-        android:text="원투뜨리원투뜨리asdafedsfdsafdfasdf원"
-        android:textSize="30sp"
+        android:fontFamily="@font/base_font"
+        android:maxLines="1"
+        android:text="id"
+        android:textColor="@color/recycler_view_item_text_color"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toStartOf="@+id/user_board_item_horizontal75"
+        app:layout_constraintStart_toStartOf="@+id/user_board_item_horizontal20"
+        app:layout_constraintTop_toTopOf="@+id/user_board_item_horizontal25" />
 
     <ImageButton
         android:id="@+id/user_board_profile_delete_button"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:scaleType="fitXY"
-        android:layout_marginEnd="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/recycler_view_item_background_color"
         android:src="@drawable/baseline_close_24"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/user_board_profile_nickname"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/user_board_item_horizontal75"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/user_board_item_horizontal20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".2"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/user_board_item_horizontal5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/user_board_item_horizontal75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".75"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/user_board_item_horizontal25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".25"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

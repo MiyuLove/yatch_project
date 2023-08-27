@@ -7,4 +7,19 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="default_background_color">#D2F6F2</color>
+    <color name="default_text_color">#18A595</color>
+
+    <color name="default_button_color">#92EAD1</color>
+    <color name="default_button_text">#FFFFFF</color>
+
+    <color name="dialog_background_color">#D2F6F2</color>
+
+    <color name="recycler_view_background_color">#AFF4EC</color>
+    <color name="recycler_view_background_border_color">#5E9F98</color>
+    <color name="recycler_view_item_background_color">#14E3C4</color>
+    <color name="recycler_view_item_title_text_color">#00A6FF</color>
+    <color name="recycler_view_item_text_color">#0092BD</color>
+    <color name="recycler_view_item_button_color">#0092BD</color>
 </resources>

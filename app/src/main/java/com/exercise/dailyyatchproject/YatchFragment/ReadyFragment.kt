@@ -31,12 +31,12 @@ class ReadyFragment : Fragment() {
     }
     private fun initView(){
         binding.readyTestNavDiceWithBoard.setOnClickListener{
-        //    viewModel.setGameMode(0)
-        //    Navigation.findNavController(binding.root).navigate(R.id.action_readyFragment_to_userFragment)
+            viewModel.setGameMode(0)
+            //Navigation.findNavController(binding.root).navigate(R.id.action_readyFragment_to_userFragment)
         }
         binding.readyTestNavBoard.setOnClickListener {
             viewModel.setGameMode(1)
-            Navigation.findNavController(binding.root).navigate(R.id.action_readyFragment_to_userFragment)
+            //Navigation.findNavController(binding.root).navigate(R.id.action_readyFragment_to_userFragment)
         }
     }
 }

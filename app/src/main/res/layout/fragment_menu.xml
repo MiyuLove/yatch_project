@@ -8,13 +8,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_blue_600">
+        android:background="@color/default_background_color">
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@android:drawable/dialog_frame"
-            android:scaleType="fitXY"
+            android:src="@drawable/dice_yatch"
+
             app:layout_constraintBottom_toTopOf="@+id/menu_horizontal_30"
             app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
             app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"
@@ -25,10 +25,12 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="15dp"
-
-            android:text="game"
+            android:backgroundTint="@color/default_button_color"
+            android:fontFamily="@font/base_font"
+            android:textStyle="bold"
+            android:text="야 치 보 드"
+            android:textColor="@color/default_button_text"
             android:textSize="40sp"
-
             app:layout_constraintBottom_toTopOf="@+id/menu_horizontal_65"
             app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
             app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"
@@ -39,8 +41,12 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="15dp"
-            android:text="history"
+            android:text="대 전 기 록"
+            android:textStyle="bold"
             android:textSize="40sp"
+            android:fontFamily="@font/base_font"
+            android:backgroundTint="@color/default_button_color"
+            android:textColor="@color/default_button_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/menu_vertical_85"
             app:layout_constraintStart_toStartOf="@+id/menu_vertical_15"

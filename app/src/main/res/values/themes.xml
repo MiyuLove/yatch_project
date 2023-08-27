@@ -3,6 +3,8 @@
     <style name="Base.Theme.DailyYatchProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/default_background_color</item>
+        <item name="android:statusBarColor" tools:targetApi ="l">@color/black</item>
     </style>
 
     <style name="Theme.DailyYatchProject" parent="Base.Theme.DailyYatchProject" />

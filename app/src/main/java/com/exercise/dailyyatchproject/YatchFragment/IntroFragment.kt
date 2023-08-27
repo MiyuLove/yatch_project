@@ -34,7 +34,7 @@ class IntroFragment : Fragment() {
             .alpha(1f)
             .setDuration(1000)
             .withEndAction({
-                Navigation.findNavController(binding.root).navigate(R.id.action_IntroFragment_to_menuFragment)
+
             })
     }
 }

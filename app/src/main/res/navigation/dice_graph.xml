@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dice_graph"
+    app:startDestination="@id/scoreFragment">
+
+    <fragment
+        android:id="@+id/diceFragment"
+        android:name="com.exercise.dailyyatchproject.YatchFragment.DiceFragments.DiceFragment"
+        android:label="fragment_dice"
+        tools:layout="@layout/fragment_dice">
+        <action
+            android:id="@+id/action_diceFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.exercise.dailyyatchproject.YatchFragment.DiceFragments.ScoreFragment"
+        android:label="fragment_score"
+        tools:layout="@layout/fragment_score" >
+        <action
+            android:id="@+id/action_scoreFragment_to_diceFragment"
+            app:destination="@id/diceFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+</navigation>

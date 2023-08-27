@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <corners android:radius="10dp" /> <!-- 둥근 모서리 반경 설정 -->
+            <solid android:color="@color/default_background_color" /> <!-- 버튼 배경 색상 -->
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>

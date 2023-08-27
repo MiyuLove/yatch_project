@@ -4,11 +4,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import com.exercise.dailyyatchproject.R
 import com.exercise.dailyyatchproject.UtilSupply.UtilCode
 import com.exercise.dailyyatchproject.UtilSupply.UtilCode.Companion.ucu
 import com.exercise.dailyyatchproject.databinding.BoardButtonBoxBinding
 
-class BoardRenderingBox(width :Int, height : Int, inflater: LayoutInflater, container: ViewGroup?){
+class BoardRenderingBox(val width :Int = 1000, val height : Int = 1000, inflater: LayoutInflater, container: ViewGroup?){
     private var boardButtonList : List<View>
     private var boardBase : BoardBase
 
@@ -40,11 +42,20 @@ class BoardRenderingBox(width :Int, height : Int, inflater: LayoutInflater, cont
     private fun setBoardButtonTranslationXY(buttonList :List <View>){
         for (i in boardListNumber/2 until boardListNumber){
             buttonList[i].translationX = boardBase.widthMidLine.toFloat()
+            buttonList[i].setBackgroundResource(R.drawable.board_user_text_background_clicked)
         }
+
         for (i in 0 until boardListNumber/2){
             buttonList[i].translationY = boardBase.leftLayoutYList[i].toFloat()
             buttonList[i+boardListNumber/2].translationY = boardBase.rightLayoutYList[i].toFloat()
+
+            buttonList[i].setBackgroundResource(R.drawable.board_user_text_background_clicked)
         }
+
+        for(i in buttonList.indices){
+            buttonList[i].layoutParams = ViewGroup.LayoutParams(boardBase.widthMidLine, height/7)
+        }
+
     }
 
     fun setBoardButtonOnClick(clickEvent : () -> Unit){

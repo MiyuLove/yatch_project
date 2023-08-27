@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/board_user_text_background"
+    android:id="@+id/yatch_board_user_layout">
+
+    <TextView
+        android:id="@+id/yatch_board_user_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="asdfsadff"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:maxLines="1"/>
+</LinearLayout>

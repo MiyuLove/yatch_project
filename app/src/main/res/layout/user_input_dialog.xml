@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="400dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_blue_A200">
+    android:background="@drawable/background_dialog_round_rectangle">
 
     <TextView
         android:id="@+id/dialog_title"
-        android:text="닉네임 입력"
-        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/base_font"
+        android:text="닉네임 입력"
+        android:textColor="@color/default_text_color"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +25,9 @@
         android:layout_height="80dp"
         android:layout_margin="40dp"
         android:padding="20dp"
+        android:textSize="30sp"
         android:hint="닉네임"
+        android:fontFamily="@font/base_font"
         android:maxLines="1"
         android:background="@color/white"
 
@@ -33,22 +39,31 @@
     <Button
         android:id="@+id/user_input_cancel_button"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="CANCEL"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:fontFamily="@font/base_font"
+        android:text="취 소"
+        android:textSize="30sp"
+        android:backgroundTint="@color/default_button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline50"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline70" />
 
     <Button
         android:id="@+id/user_input_ok_button"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="OK"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:text="입 력"
+        android:fontFamily="@font/base_font"
+
+        android:backgroundTint="@color/default_button_color"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline50" />
+        app:layout_constraintStart_toStartOf="@+id/guideline50"
+        app:layout_constraintTop_toTopOf="@+id/guideline70" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -56,6 +71,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline50"

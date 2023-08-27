@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/board_score_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/board_score_layout_horizontal80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/board_score_button_num1"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal13"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/board_score_button_num2"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal26"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal13" />
+
+        <include
+            android:id="@+id/board_score_button_num3"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal39"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal26" />
+
+        <include
+            android:id="@+id/board_score_button_num4"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal52"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal39" />
+
+        <include
+            android:id="@+id/board_score_button_num5"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal65"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal52" />
+
+        <include
+            android:id="@+id/board_score_button_num6"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal78"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal65" />
+
+        <TextView
+            android:id="@+id/board_score_bonus_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/board_user_text_background"
+            android:gravity="center"
+            android:text="BoNuS ?"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/board_score_vertical45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal78" />
+
+        <include
+            android:id="@+id/board_score_triple_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/board_score_quadra_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal13" />
+
+        <include
+            android:id="@+id/board_score_full_house_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal39"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal26" />
+
+        <include
+            android:id="@+id/board_score_choice_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal52"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal39" />
+
+        <include
+            android:id="@+id/board_score_small_straight_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal65"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal52" />
+
+        <include
+            android:id="@+id/board_score_large_straight_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/board_score_horizontal78"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal65" />
+
+        <include
+            android:id="@+id/board_score_yatch_button"
+            layout="@layout/board_button_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/board_score_vertical55"
+            app:layout_constraintTop_toTopOf="@+id/board_score_horizontal78" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_vertical45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_vertical55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".14" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".28" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".42" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".56" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".70" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_score_horizontal78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".85" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/board_score_score_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/base_font"
+        android:text="Score : 10"
+        android:textAlignment="center"
+        android:textColor="@color/default_text_color"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <Button
+        android:id="@+id/board_score_before_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/default_button_color"
+        android:fontFamily="@font/base_font"
+        android:text="이전"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/board_score_score_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <Button
+        android:id="@+id/board_score_after_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/default_button_color"
+        android:fontFamily="@font/base_font"
+        android:text="다음"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/board_score_score_text"
+        app:layout_constraintTop_toTopOf="@+id/board_score_layout_horizontal80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/board_score_layout_horizontal80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

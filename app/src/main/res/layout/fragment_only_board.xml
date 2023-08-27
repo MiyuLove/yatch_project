@@ -10,105 +10,90 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/only_board_text_title"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/only_board_current_score_list_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yatch Board"
-            android:textAlignment="center"
+            android:backgroundTint="@color/default_button_color"
+            android:fontFamily="@font/base_font"
+            android:text="점수"
             android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
+
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/only_board_user_recyclerView"
+
+        <Button
+            android:id="@+id/only_board_result_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/default_button_color"
+            android:fontFamily="@font/base_font"
+            android:text="결과"
+            android:textSize="40sp"
+
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical80"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/only_board_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/only_board_text_title"/>
+            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical80"
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical20"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/only_board_text_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="nickname"
+                android:textSize="25sp" />
+        </androidx.cardview.widget.CardView>
 
         <FrameLayout
             android:id="@+id/only_board_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/light_blue_A200"
-            android:alpha="0.5"
-            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal10"
-            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal79"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <Button
-            android:id="@+id/board_next"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="10dp"
-            android:text="save &amp; next"
-            android:textSize="35sp"
+            android:clipChildren="false"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal85" />
+            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal15" />
 
-        <TextView
-            android:id="@+id/only_board_text_user"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="10dp"
-            android:maxLines="1"
-            android:text="um jun sik"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal85"
-
-            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical40"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal79" />
-        <TextView
-            android:id="@+id/only_board_text_score"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="10dp"
-            android:maxLines="1"
-            android:text="Score : 0"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal85"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/only_board_vertical40"
-            app:layout_constraintTop_toTopOf="@+id/only_board_horizontal79" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_horizontal10"
+            android:id="@+id/only_board_horizontal15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_horizontal79"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.80" />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_horizontal85"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.87" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_vertical40"
+            android:id="@+id/only_board_vertical20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.40" />
+            app:layout_constraintGuide_percent="0.3" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_vertical80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -38,14 +39,23 @@ class HistoryFragment : Fragment(){
     }
 
     private fun initView(){
-        val recyclerItemClick ={itemPosition : Int ->
-            navController.navigate(R.id.action_historyFragment_to_resultFragment)
+        binding.historyResultButton.setOnClickListener {
+            viewModel.deleteAllData()
         }
-        viewModel.resultEntityList.observe(viewLifecycleOwner, Observer {
-            Log.d("Result", it.toString())
-            binding.historyResultBoard.adapter = HistoryRecyclerAdapter(it,recyclerItemClick)
+        initRecyclerView()
+    }
 
+    private fun initRecyclerView(){
+        val recyclerItemClick ={itemPosition : Int ->
+            navController.navigate(R.id.action_historyFragment_to_historyDataFragment)
+        }
+
+        viewModel.resultEntityList.observe(viewLifecycleOwner, Observer {
+            binding.historyResultEmpty.isVisible = it.isEmpty()
+            binding.historyResultBoard.adapter = HistoryRecyclerAdapter(it,recyclerItemClick)
+            val layoutManager = LinearLayoutManager(this.context)
+            binding.historyResultBoard.layoutManager = layoutManager
+            binding.historyResultBoard.scrollToPosition(it.size-1)
         })
-        binding.historyResultBoard.layoutManager = LinearLayoutManager(this.context)
     }
 }

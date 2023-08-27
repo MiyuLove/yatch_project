@@ -21,8 +21,8 @@ class UserViewModel : ViewModel(){
         userEntityList = repository.read().asLiveData()
     }
 
-    fun delete(){
-
+    fun delete(userEntity: UserEntity) =viewModelScope.launch (Dispatchers.IO) {
+        repository.delete(userEntity)
     }
 
     fun deleteAllData() = viewModelScope.launch (Dispatchers.IO){

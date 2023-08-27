@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".YatchFragment.ResultFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/only_board_text_score"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Result"
+        android:textSize="35sp"
+        android:background="@drawable/board_user_text_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/result_guideline_horizontal15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/result_test_button"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/result_replay_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="r e p l a y"
+        android:textSize="25sp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal90" />
 
-        <Button
-            android:id="@+id/result_test_button2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/result_test_button" />
 
-        <Button
-            android:id="@+id/result_test_button3"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/result_test_button2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/result_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/result_guideline_horizontal90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal15"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/board_user_item"
+        android:background="@drawable/board_user_text_background"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/result_guideline_horizontal15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/result_guideline_horizontal90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+</androidx.constraintlayout.widget.ConstraintLayout>

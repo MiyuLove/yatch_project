@@ -7,17 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
-import com.exercise.dailyyatchproject.YatchFragment.OnDialogDismissListener
+import com.exercise.dailyyatchproject.YatchFragment.OnBoardCallback
+import com.exercise.dailyyatchproject.YatchFragment.OnUserListCallback
 import com.exercise.dailyyatchproject.YatchFragment.OnlyBoardFragment
 import com.exercise.dailyyatchproject.databinding.BoardButtonBoxBinding
 import com.exercise.dailyyatchproject.databinding.KeyboardDialogBinding
 
 class BoardKeyboardDialog(private val context : Context,
-private val listener: OnDialogDismissListener) {
+private val listener: OnBoardCallback) {
 
     private val binding : KeyboardDialogBinding
     private val dialog = Dialog(context)
-    private lateinit var onDialogDismissListener : OnDialogDismissListener
+    private lateinit var onUserListCallback : OnBoardCallback
     private var content = 0
     var score = 0
 
@@ -27,8 +28,8 @@ private val listener: OnDialogDismissListener) {
         makeDialogButton()
     }
 
-    fun setDialogDismissListener(listener: OnDialogDismissListener){
-        onDialogDismissListener = listener
+    fun setDialogDismissListener(listener: OnBoardCallback){
+        onUserListCallback = listener
     }
 
     fun show(content : Int){

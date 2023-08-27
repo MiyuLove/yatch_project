@@ -10,16 +10,190 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <TextView android:id="@+id/dice_board_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dice"
+            android:text="Dice Board"
+            android:textAlignment="center"
             android:textSize="40sp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal07"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView android:id="@+id/dice_board_user_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
+
+        <Button android:id="@+id/dice_board_score_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
+            app:layout_constraintEnd_toStartOf="@+id/dice_board_title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
+
+        <ImageButton android:id="@+id/dice_board_setting_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_settings_24"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dice_board_title_text"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
+
+        <fragment
+            android:id="@+id/dice_board_nav_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/dice_graph"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal80"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal15"
+            app:defaultNavHost ="true"
+            />
+
+        <Button
+            android:id="@+id/dice_board_dice_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Dice"
+            android:textSize="40sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal90" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal80">
+
+            <ImageView
+                android:id="@+id/dice_board_selected_dice1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dice_board_selected_vertical20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/dice_board_selected_dice2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dice_board_selected_vertical40"
+                app:layout_constraintStart_toStartOf="@+id/dice_board_selected_vertical20"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/dice_board_selected_dice3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dice_board_selected_vertical60"
+                app:layout_constraintStart_toStartOf="@+id/dice_board_selected_vertical40"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/dice_board_selected_dice4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dice_board_selected_vertical80"
+                app:layout_constraintStart_toStartOf="@+id/dice_board_selected_vertical60"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/dice_board_selected_dice5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/dice_board_selected_vertical80"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/dice_board_selected_vertical20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/dice_board_selected_vertical40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.40" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/dice_board_selected_vertical60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.60" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/dice_board_selected_vertical80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="329dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dice_board_horizontal07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dice_board_horizontal15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dice_board_horizontal80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.83" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dice_board_horizontal90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
