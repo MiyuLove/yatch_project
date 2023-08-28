@@ -38,13 +38,13 @@ class DiceBoardDialog(private val context : Context,
         }
     }
 
-    private fun initSelectedDiceImage(){
+    private fun initSelectedDiceImage() = with(binding){
         val selectedDiceImage = listOf(
-            binding.diceBoardDialogSelectedDice1,
-            binding.diceBoardDialogSelectedDice2,
-            binding.diceBoardDialogSelectedDice3,
-            binding.diceBoardDialogSelectedDice4,
-            binding.diceBoardDialogSelectedDice5
+            diceBoardDialogSelectedDice1,
+            diceBoardDialogSelectedDice2,
+            diceBoardDialogSelectedDice3,
+            diceBoardDialogSelectedDice4,
+            diceBoardDialogSelectedDice5
         )
 
         for(i in selectedDiceImage.indices){
@@ -53,13 +53,13 @@ class DiceBoardDialog(private val context : Context,
             }
         }
     }
-    private fun initCastedDiceImage(){
+    private fun initCastedDiceImage() = with(binding){
         val castedDiceImage = listOf(
-            binding.diceBoardDialogDice1,
-            binding.diceBoardDialogDice2,
-            binding.diceBoardDialogDice3,
-            binding.diceBoardDialogDice4,
-            binding.diceBoardDialogDice5,
+            diceBoardDialogDice1,
+            diceBoardDialogDice2,
+            diceBoardDialogDice3,
+            diceBoardDialogDice4,
+            diceBoardDialogDice5,
         )
 
         for(i in castedDiceImage.indices){

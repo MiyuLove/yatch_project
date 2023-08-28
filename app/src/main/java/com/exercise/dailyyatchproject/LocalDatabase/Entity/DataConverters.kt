@@ -18,6 +18,40 @@ class DataConverters{
     }
 
     @TypeConverter
+    fun fromListIntToString(intList : List<Int>) : String = intList.toString()
+
+    @TypeConverter
+    fun toListIntFromString(stringList : String) : List<Int>{
+        val result = ArrayList<Int>()
+        val split =stringList.replace("[","").replace("]","").replace(" ","").split(",")
+        for (n in split) {
+            try {
+                result.add(n.toInt())
+            } catch (e: Exception) {
+
+            }
+        }
+        return result
+    }
+
+    @TypeConverter
+    fun fromListStringToString(stringList : List<String>) : String = stringList.toString()
+
+    @TypeConverter
+    fun toListStringFromString(stringList : String) : List<String>{
+        val result = ArrayList<String>()
+        val split =stringList.replace("[","").replace("]","").replace(" ","").split(",")
+        for (n in split) {
+            try {
+                result.add(n)
+            } catch (e: Exception) {
+
+            }
+        }
+        return result
+    }
+
+    @TypeConverter
     fun fromBitmapToByteArray(bitmap: Bitmap) : ByteArray {
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)

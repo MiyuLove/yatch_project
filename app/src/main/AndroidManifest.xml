@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/yatch_logo_tmp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/yatch_logo_tmp_round"
         android:supportsRtl="true"

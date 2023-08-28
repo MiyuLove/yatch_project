@@ -26,13 +26,14 @@ class ResultFragment : Fragment() {
     private lateinit var viewModel : HistoryViewModel
     private lateinit var mainViewModel : MainViewModel
     private lateinit var navController: NavController
+    private var saveState = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = (requireActivity() as MainActivity).mainViewModel
         viewModel = HistoryViewModel()
         viewModel.setUserSortedList(mainViewModel.getMainUserData().toMutableList())
-        //room에 저장
+
         navController = findNavController()
 
         requireActivity().onBackPressedDispatcher.addCallback(this){
@@ -52,11 +53,17 @@ class ResultFragment : Fragment() {
 
     private fun initView(){
         binding.resultRecyclerView.adapter = BoardRankingRecyclerAdapter(viewModel.getUserList())
-
         binding.resultRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
 
+        binding.resultSaveButton.setOnClickListener {
+            if(saveState){
+                viewModel.storeUserListToResultEntity()
+                navController.navigate(R.id.action_resultFragment_to_historyFragment)
+            }
+            saveState = false
+        }
+
         binding.resultReplayButton.setOnClickListener {
-            mainViewModel.initiateScore()
             navController.popBackStack(R.id.onlyBoardFragment, false)
         }
     }

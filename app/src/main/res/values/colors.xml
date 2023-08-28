@@ -22,4 +22,8 @@
     <color name="recycler_view_item_title_text_color">#00A6FF</color>
     <color name="recycler_view_item_text_color">#0092BD</color>
     <color name="recycler_view_item_button_color">#0092BD</color>
+
+    <color name="custom_keyboard_background_color">#B6EAE0</color>
+    <color name="custom_keyboard_color">#D2F5FF</color>
+    <color name="custom_keyboard_text_color">#00A395</color>
 </resources>

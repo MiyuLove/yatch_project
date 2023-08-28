@@ -2,6 +2,7 @@ package com.exercise.dailyyatchproject.YatchFragment
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,12 +21,14 @@ import com.exercise.dailyyatchproject.YatchFragment.RecyclerAdapters.UserRecycle
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.MainViewModel
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.UserViewModel
 import com.exercise.dailyyatchproject.databinding.FragmentUserBinding
+import kotlin.random.Random
 
 class UserFragment : Fragment(), OnUserListCallback {
     lateinit var binding : FragmentUserBinding
     lateinit var viewModel : UserViewModel
     lateinit var mainViewModel : MainViewModel
     private var changing = false
+    private var lockButton = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,29 +52,29 @@ class UserFragment : Fragment(), OnUserListCallback {
         viewModel.read()
     }
 
-    private fun initView(){
+    private fun initView() = with(binding){
         if(mainViewModel.getGameMode() == 0){
-            binding.userTitleText.text = "Dice Board"
+            userTitleText.text = "Dice Board"
         }else{
-            binding.userTitleText.text = "Only Board"
+            userTitleText.text = "Only Board"
         }
 
-        binding.userAddUserButton.setOnClickListener {
-            if(!changing) {
+        userAddUserButton.setOnClickListener {
+            if(lockButton && !changing){
                 changing = true
-                val dlg = BoardUserDialog(binding.root.context, this)
+                val dlg = BoardUserDialog(binding.root.context, this@UserFragment)
                 dlg.show()
             }
         }
 
         viewModel.userEntityList.observe(viewLifecycleOwner, Observer {
-            binding.userListLayout.adapter = UserRecyclerAdapter(it, this)
-            binding.userListLayout.scrollToPosition(it.size-1)
+            userListLayout.adapter = UserRecyclerAdapter(it, this@UserFragment)
+            userListLayout.scrollToPosition(it.size-1)
+            lockButton = true
         })
 
-        //setMainUserData 돌 때 button 누르면 튕긴다 그 이유를 찾자
         binding.userOnlyBoardButton.setOnClickListener {
-            if(viewModel.userEntityList.value!!.isNotEmpty()) {
+            if(lockButton&&viewModel.userEntityList.value!!.isNotEmpty()) {
                 mainViewModel.setMainUserData(viewModel.userEntityList.value!!)
                 if(mainViewModel.getGameMode() == 0){
                     Navigation.findNavController(binding.root).navigate(R.id.action_userFragment_to_diceWithBoardFragment)
@@ -82,11 +85,12 @@ class UserFragment : Fragment(), OnUserListCallback {
             }
         }
 
-        binding.userDeleteUserButton.setOnClickListener {
-            viewModel.deleteAllData()
+        userDeleteUserButton.setOnClickListener {
+            if(lockButton)
+                viewModel.deleteAllData()
         }
 
-        binding.userListLayout.layoutManager = LinearLayoutManager(this.context)
+        userListLayout.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onUserListAdded(value: String) {
@@ -95,9 +99,17 @@ class UserFragment : Fragment(), OnUserListCallback {
 
     private fun createBitmapForUserList(): Bitmap {
         val bitmapOption = BitmapFactory.Options()
+        val resourceImageList = listOf(
+            R.drawable.dice_num1,
+            R.drawable.dice_num2,
+            R.drawable.dice_num3,
+            R.drawable.dice_num4,
+            R.drawable.dice_num5,
+            R.drawable.dice_num6,
+        )
         bitmapOption.inSampleSize = 2
 
-        return BitmapFactory.decodeResource(resources, R.drawable.one_one_1, bitmapOption)
+        return BitmapFactory.decodeResource(resources, resourceImageList[Random.nextInt(0,6)], bitmapOption)
     }
 
     override fun onUserListDeleted(userEntity: UserEntity) {

@@ -15,6 +15,7 @@ class HistoryRecyclerAdapter(private val resultList : List<ResultEntity>, privat
         val winnerDate : TextView = binding.textItemDate
         val winnerName : TextView = binding.textItemWinner
         val winnerButton : Button = binding.textItemButton
+        val winnerScore = binding.textItemWinnerScore
     }
 
     override fun onCreateViewHolder(
@@ -28,11 +29,32 @@ class HistoryRecyclerAdapter(private val resultList : List<ResultEntity>, privat
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.winnerDate.text = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(resultList[position].dateTime)
-        holder.winnerName.text = "Winner : "+ resultList[position].winner
+        val winnerNickname = "우승 : " + editNickname(resultList[position].userList[0])
+        val winnerScore = resultList[position].scoreList[0].toString() + "점"
+
+        holder.winnerName.text = winnerNickname
+        holder.winnerScore.text = winnerScore
         holder.winnerButton.setOnClickListener {
             itemClick(position)
         }
     }
+
+    private fun editNickname(nickname : String = "") : String{
+        if(nickname.length <= 6){
+            return nickname
+        }
+        var omittedNickname = ""
+
+        for(i in 0..5){
+            omittedNickname += nickname[i]
+        }
+        for(i in 0..2){
+            omittedNickname +="."
+        }
+
+        return omittedNickname
+    }
+
     override fun getItemCount(): Int {
         return resultList.size
     }

@@ -3,12 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@color/custom_keyboard_background_color">
 
     <TextView
         android:id="@+id/dialog_title"
-
-        android:textSize="30sp"
+        android:text="점수를 입력하세요"
+        android:textSize="35sp"
+        android:fontFamily="@font/base_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/dialog_score"
@@ -20,9 +21,10 @@
         android:id="@+id/dialog_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="점수를 입력하세요."
+        android:text="0"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="35sp"
+        android:fontFamily="@font/base_font"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,7 +35,6 @@
         android:layout_height="500dp"
         android:columnCount="3"
         android:rowCount="4"
-        android:background="@color/black"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

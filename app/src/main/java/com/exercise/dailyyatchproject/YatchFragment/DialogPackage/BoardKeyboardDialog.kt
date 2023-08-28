@@ -1,16 +1,14 @@
-package com.exercise.dailyyatchproject.YatchFragment.Board
+package com.exercise.dailyyatchproject.YatchFragment.DialogPackage
 
 import android.app.Dialog
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
+import androidx.core.view.marginLeft
+import com.exercise.dailyyatchproject.R
 import com.exercise.dailyyatchproject.YatchFragment.OnBoardCallback
-import com.exercise.dailyyatchproject.YatchFragment.OnUserListCallback
-import com.exercise.dailyyatchproject.YatchFragment.OnlyBoardFragment
-import com.exercise.dailyyatchproject.databinding.BoardButtonBoxBinding
 import com.exercise.dailyyatchproject.databinding.KeyboardDialogBinding
 
 class BoardKeyboardDialog(private val context : Context,
@@ -20,7 +18,7 @@ private val listener: OnBoardCallback) {
     private val dialog = Dialog(context)
     private lateinit var onUserListCallback : OnBoardCallback
     private var content = 0
-    var score = 0
+    private var score = 0
 
     init{
         binding = KeyboardDialogBinding.inflate(LayoutInflater.from(context))
@@ -34,8 +32,18 @@ private val listener: OnBoardCallback) {
 
     fun show(content : Int){
         binding.dialogTitle.text = content.toString()
+
+        showSettingDialog()
         this.content = content
+
+        dialog.setCanceledOnTouchOutside(false)
         dialog.show()
+    }
+
+    private fun showSettingDialog() = with(binding){
+        dialogTitle.text = "점수를 입력하세요."
+        dialogScore.text = "0점"
+        score = 0
     }
 
     private fun makeDialogButton(){
@@ -48,12 +56,16 @@ private val listener: OnBoardCallback) {
                     columnSpec = GridLayout.spec(j, 1f)
                     width = 0
                     height = 0
+                    setMargins(10,10,10,10)
                 }
                 button.layoutParams = params
 
                 button.setOnClickListener {
                     setScoreText(index)
                 }
+
+                button.setBackgroundResource(R.color.custom_keyboard_color)
+                button.setTextColor(context.getColor(R.color.custom_keyboard_text_color))
 
                 button.text = (index).toString()
                 if(index == 10){
@@ -93,6 +105,6 @@ private val listener: OnBoardCallback) {
         val number = if(_number < 10) _number else 0
 
         score = score * 10 + number
-        binding.dialogScore.text = score.toString()
+        binding.dialogScore.text = "$score 점"
     }
 }

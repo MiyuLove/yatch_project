@@ -11,7 +11,7 @@ import com.exercise.dailyyatchproject.LocalDatabase.Entity.DataConverters
 import com.exercise.dailyyatchproject.LocalDatabase.Entity.ResultEntity
 import com.exercise.dailyyatchproject.LocalDatabase.Entity.UserEntity
 
-@Database(entities = [ResultEntity::class, UserEntity::class], version = 3)
+@Database(entities = [ResultEntity::class, UserEntity::class], version = 5)
 @TypeConverters(DataConverters::class)
 abstract class YatchDatabase : RoomDatabase(){
 

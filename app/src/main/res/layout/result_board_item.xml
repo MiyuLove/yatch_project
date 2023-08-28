@@ -12,12 +12,17 @@
 
     <TextView
         android:id="@+id/text_item_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:text="YYYY MM DD Game"
         android:textColor="@color/recycler_view_item_title_text_color"
-        android:textSize="40sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="40sp"
+        android:autoSizeMinTextSize="25sp"
+        android:autoSizeStepGranularity="2sp"
+        android:maxLines="1"
+        android:gravity="center_vertical"
         android:fontFamily="@font/base_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,30 +42,52 @@
         <TextView
             android:id="@+id/text_item_winner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Winner um!"
-            android:textColor="@color/recycler_view_item_text_color"
-            android:fontFamily="@font/base_font"
-
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:maxLines="2"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:fontFamily="@font/base_font"
+            android:text="Winner um!"
+
+            android:textColor="@color/recycler_view_item_text_color"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="15sp"
+            android:autoSizeStepGranularity="2sp"
+            android:maxLines="1"
+            android:gravity="center_vertical"
             app:layout_constraintEnd_toStartOf="@+id/text_item_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/text_item_winner_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/base_font"
+            android:maxLines="2"
+            android:text="Score : 100"
+
+            android:textColor="@color/recycler_view_item_text_color"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_item_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_winner" />
+
         <Button
             android:id="@+id/text_item_button"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="결과 보기"
-            android:textSize="20sp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:backgroundTint="@color/recycler_view_item_button_color"
+            android:text="결과"
+            android:layout_margin="10dp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="15sp"
+            android:autoSizeStepGranularity="2sp"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.exercise.dailyyatchproject.YatchFragment.YatchViewModel
 
+import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -24,14 +25,37 @@ class HistoryViewModel : ViewModel() {
     private lateinit var userList : List<MainUserData>
 
     fun getUserList() = userList
+
     fun setUserSortedList(mainUserList : MutableList<MainUserData>){
         userList = mainUserList.sortedByDescending { it.score }
-        storeUserListToResultEntity(userList[0].nickname, Date())
+        Log.d("result", userList.toString())
     }
 
-    private fun storeUserListToResultEntity(winner : String, dateTime : Date){
-        Log.d("room", "$winner $dateTime")
-        create(ResultEntity(0,winner,dateTime))
+    fun getResultList(index : Int) : ResultEntity? {
+        return resultEntityList.value?.get(index)
+    }
+
+    fun storeUserListToResultEntity(){
+        create(ResultEntity(0,
+            getUserNicknameList(),
+            getUserScoreList(),
+            Date()))
+    }
+
+    private fun getUserNicknameList(): List<String>{
+        val userNicknameList = mutableListOf<String>()
+        userList.forEach {
+            userNicknameList.add(it.nickname)
+        }
+        return userNicknameList
+    }
+
+    private fun getUserScoreList(): List<Int>{
+        val userScoreList = mutableListOf<Int>()
+        userList.forEach {
+            userScoreList.add(it.score)
+        }
+        return userScoreList
     }
 
     fun create(resultEntity: ResultEntity) = viewModelScope.launch (Dispatchers.IO){

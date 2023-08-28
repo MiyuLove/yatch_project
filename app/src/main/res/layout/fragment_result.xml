@@ -13,9 +13,13 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:maxLines="1"
-        android:text="Result"
-        android:textSize="35sp"
-        android:background="@drawable/board_user_text_background"
+        android:text="점수판"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="55sp"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeStepGranularity="2sp"
+        android:fontFamily="@font/base_font"
+        android:textColor="@color/default_text_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/result_guideline_horizontal15"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,14 +29,37 @@
         android:id="@+id/result_replay_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="r e p l a y"
-        android:textSize="25sp"
         android:layout_margin="10dp"
+        android:backgroundTint="@color/default_button_color"
+        android:fontFamily="@font/base_font"
+        android:text="계속하기"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="25sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal90" />
+        app:layout_constraintStart_toStartOf="@+id/result_guideline_vertical50"
+        app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal90"
+        app:layout_constraintWidth_percent="0.45" />
 
+    <Button
+        android:id="@+id/result_save_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/default_button_color"
+        android:fontFamily="@font/base_font"
+        android:text="저장하기"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="25sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/result_guideline_vertical50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal90"
+        app:layout_constraintWidth_percent="0.45" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result_recycler_view"
@@ -41,10 +68,8 @@
         android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/result_guideline_horizontal90"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/result_guideline_horizontal15"
-        app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/board_user_item"
         android:background="@drawable/board_user_text_background"
         />
@@ -62,4 +87,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/result_guideline_vertical50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

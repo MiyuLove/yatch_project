@@ -15,9 +15,10 @@ data class ResultEntity (
     @ColumnInfo(name = "id")
     val id : Int,
 
-    @ColumnInfo(name = "winner")
-    val winner : String,
-
+    @ColumnInfo(name = "users")
+    val userList : List<String>,
+    @ColumnInfo(name = "scores")
+    val scoreList : List<Int>,
     @ColumnInfo(name = "DateTime")
     val dateTime : Date
 )

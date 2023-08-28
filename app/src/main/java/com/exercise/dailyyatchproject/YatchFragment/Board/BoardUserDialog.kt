@@ -39,7 +39,8 @@ private val onUserListCallback: OnUserListCallback){
                 userInputNickname.hint = "이름을 입력해!"
             }
             else{
-                onUserListCallback.onUserListAdded(userInputNickname.text.toString())
+                val modifiedText =userInputNickname.text.toString().replace(" ","").replace("\n","")
+                onUserListCallback.onUserListAdded(modifiedText)
                 onUserListCallback.onUserAddedState(false)
                 dialog.dismiss()
             }

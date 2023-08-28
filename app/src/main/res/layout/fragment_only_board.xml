@@ -13,15 +13,17 @@
         <Button
             android:id="@+id/only_board_current_score_list_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:backgroundTint="@color/default_button_color"
             android:fontFamily="@font/base_font"
             android:text="점수"
-            android:textSize="40sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeMinTextSize="15sp"
 
             android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
-            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical20"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,38 +31,42 @@
         <Button
             android:id="@+id/only_board_result_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/default_button_color"
             android:fontFamily="@font/base_font"
             android:text="결과"
-            android:textSize="40sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeMinTextSize="15sp"
 
             android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/only_board_vertical80"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.51" />
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical65"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <TextView
+            android:id="@+id/only_board_text_user"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/only_board_horizontal15"
-            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical80"
-            app:layout_constraintStart_toStartOf="@+id/only_board_vertical20"
-            app:layout_constraintTop_toTopOf="parent">
+            android:gravity="center"
+            android:text="nick"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeStepGranularity="2sp"
+            android:maxLines="1"
+            android:fontFamily="@font/base_font"
+            android:textColor="@color/default_text_color"
+            android:background="@drawable/user_board_item_background"
+            android:layout_margin="10dp"
 
-            <TextView
-                android:id="@+id/only_board_text_user"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="nickname"
-                android:textSize="25sp" />
-        </androidx.cardview.widget.CardView>
+
+            app:layout_constraintBottom_toTopOf="@+id/only_board_layout"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical65"
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical35"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/only_board_layout"
@@ -83,17 +89,17 @@
             app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_vertical20"
+            android:id="@+id/only_board_vertical35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.35" />
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/only_board_vertical80"
+            android:id="@+id/only_board_vertical65"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.70" />
+            app:layout_constraintGuide_percent="0.65" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
