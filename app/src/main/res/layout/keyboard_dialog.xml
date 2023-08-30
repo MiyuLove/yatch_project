@@ -8,26 +8,46 @@
     <TextView
         android:id="@+id/dialog_title"
         android:text="점수를 입력하세요"
-        android:textSize="35sp"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="35sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeStepGranularity="2dp"
+
         android:fontFamily="@font/base_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/dialog_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/dice_num1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/dialog_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/base_font"
         android:text="0"
         android:textColor="@color/black"
-        android:textSize="35sp"
-        android:fontFamily="@font/base_font"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="35sp"
+        android:autoSizeMinTextSize="15sp"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
     <GridLayout
         android:id="@+id/dialog_board_layout"

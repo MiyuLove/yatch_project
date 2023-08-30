@@ -32,7 +32,7 @@ private val listener: OnBoardCallback) {
 
     fun show(content : Int){
         binding.dialogTitle.text = content.toString()
-
+        setImageView(content)
         showSettingDialog()
         this.content = content
 
@@ -40,6 +40,25 @@ private val listener: OnBoardCallback) {
         dialog.show()
     }
 
+    private fun setImageView(content : Int) = with(binding){
+        Log.d("button Image", content.toString())
+        val imageList = listOf(
+            R.drawable.dice_num1,
+            R.drawable.dice_num2,
+            R.drawable.dice_num3,
+            R.drawable.dice_num4,
+            R.drawable.dice_num5,
+            R.drawable.dice_num6,
+            R.drawable.dice_tripple,
+            R.drawable.dice_quadra,
+            R.drawable.dice_full_house,
+            R.drawable.dice_choice,
+            R.drawable.dice_small_straight,
+            R.drawable.dice_large_straight,
+            R.drawable.dice_yatch,
+        )
+        imageView.setImageResource(imageList[content])
+    }
     private fun showSettingDialog() = with(binding){
         dialogTitle.text = "점수를 입력하세요."
         dialogScore.text = "0점"
@@ -66,7 +85,7 @@ private val listener: OnBoardCallback) {
 
                 button.setBackgroundResource(R.color.custom_keyboard_color)
                 button.setTextColor(context.getColor(R.color.custom_keyboard_text_color))
-
+                button.autoSizeMaxTextSize
                 button.text = (index).toString()
                 if(index == 10){
                     button.text = "<-"

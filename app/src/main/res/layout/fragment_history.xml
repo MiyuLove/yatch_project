@@ -13,7 +13,10 @@
         android:text="Yatch History"
         android:fontFamily="@font/base_font"
         android:textColor="@color/default_text_color"
-        android:textSize="60sp"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="60sp"
+        android:autoSizeMinTextSize="15sp"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/history_guideline_horizontal_10"
         app:layout_constraintEnd_toStartOf="@+id/history_guideline_vertical_95"
@@ -38,7 +41,9 @@
         android:layout_height="0dp"
 
         android:text="초기화"
-        android:textSize="50sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="50sp"
+        android:autoSizeMinTextSize="15sp"
         android:fontFamily="@font/base_font"
 
         android:backgroundTint="@color/default_button_color"
@@ -54,6 +59,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:text="Empty"
+        tools:visibility="invisible"
         android:autoSizeTextType="uniform"
         android:autoSizeMaxTextSize="60sp"
         android:autoSizeMinTextSize="40sp"

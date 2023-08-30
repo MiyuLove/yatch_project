@@ -65,24 +65,16 @@ class BoardViewModel : ViewModel() {
     }
 
     private fun changeScore(currentList : List<Int>){
-        var sum = 0
-        for(i in currentList) sum += i
-        checkBonus(currentList)
+        var leftSum = 0
+        var rightSum = 0
+        for(i in 0 until 6) leftSum += currentList[i]
+        _bonusScore.value = leftSum
+        if(leftSum >= 63) leftSum+=35
 
-        _score.value = sum + _bonusScore.value!!
+        for(i in 6 until currentList.size) rightSum += currentList[i]
+
+        _score.value = leftSum + rightSum
         userDataList[userTurn].score = score.value!!
-    }
-
-    private fun checkBonus(currentList: List<Int>){
-        var sum = 0
-
-        for(i in 0..5){
-            sum += currentList[i]
-        }
-        if(sum >= 63)
-            _bonusScore.value = 35
-        else
-            _bonusScore.value = 0
     }
 
     fun beforeTurn(){

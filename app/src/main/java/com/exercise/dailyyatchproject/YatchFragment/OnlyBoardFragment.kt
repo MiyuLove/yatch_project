@@ -6,16 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.exercise.dailyyatchproject.MainActivity
 import com.exercise.dailyyatchproject.R
+import com.exercise.dailyyatchproject.YatchFragment.Board.BoardScoreAdapter
 import com.exercise.dailyyatchproject.YatchFragment.DialogPackage.BoardKeyboardDialog
 import com.exercise.dailyyatchproject.YatchFragment.DialogPackage.BoardRankingDialog
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.BoardViewModel
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.MainViewModel
+import com.exercise.dailyyatchproject.databinding.BoardButtonBoxBinding
 import com.exercise.dailyyatchproject.databinding.BoardScoreLayoutBinding
 import com.exercise.dailyyatchproject.databinding.FragmentOnlyBoardBinding
 import com.exercise.dailyyatchproject.databinding.KeyboardDialogBinding
@@ -25,7 +28,6 @@ class OnlyBoardFragment : Fragment(), OnBoardCallback {
     private lateinit var navController: NavController
     private lateinit var viewModel : BoardViewModel
     private lateinit var mainViewModel : MainViewModel
-    private lateinit var scoreBinding : BoardScoreLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,16 +40,15 @@ class OnlyBoardFragment : Fragment(), OnBoardCallback {
         viewModel.setUserData(mainViewModel.getMainUserData())
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOnlyBoardBinding.inflate(inflater, container, false)
-        scoreBinding = BoardScoreLayoutBinding.inflate(inflater,container,false)
-        binding.onlyBoardLayout.addView(scoreBinding.boardScoreConstraintLayout)
+
+        binding.onlyBoardLayout.addView(setScoreBindingView(inflater, container))
         navController = findNavController()
         initBindingView()
-        initScoreBindingView()
+
         return binding.root
     }
 
@@ -66,6 +67,7 @@ class OnlyBoardFragment : Fragment(), OnBoardCallback {
             onlyBoardTextUser.text = userNickname
         }
     }
+
     private fun editNickname(nickname : String = "") : String{
         if(nickname.length <= 6){
             return nickname
@@ -82,74 +84,47 @@ class OnlyBoardFragment : Fragment(), OnBoardCallback {
         return omittedNickname
     }
 
-    private fun initScoreBindingView() = with(scoreBinding){
-        val buttonList = listOf(
-            boardScoreButtonNum1,
-            boardScoreButtonNum2,
-            boardScoreButtonNum3,
-            boardScoreButtonNum4,
-            boardScoreButtonNum5,
-            boardScoreButtonNum6,
-            boardScoreTripleButton,
-            boardScoreQuadraButton,
-            boardScoreFullHouseButton,
-            boardScoreChoiceButton,
-            boardScoreSmallStraightButton,
-            boardScoreLargeStraightButton,
-            boardScoreYatchButton,
-        )
+    private fun setScoreBindingView(inflater: LayoutInflater, container: ViewGroup?) : ConstraintLayout {
+        val boardScoreAdapter = BoardScoreAdapter(inflater,container,false)
 
-        val buttonImageList = listOf(
-            R.drawable.dice_num1,
-            R.drawable.dice_num2,
-            R.drawable.dice_num3,
-            R.drawable.dice_num4,
-            R.drawable.dice_num5,
-            R.drawable.dice_num6,
-            R.drawable.dice_tripple,
-            R.drawable.dice_quadra,
-            R.drawable.dice_full_house,
-            R.drawable.dice_choice,
-            R.drawable.dice_small_straight,
-            R.drawable.dice_large_straight,
-            R.drawable.dice_yatch,
-        )
+        setScoreText(boardScoreAdapter)
+        setScoreButton(boardScoreAdapter)
+        setBottomButton(boardScoreAdapter)
+
+        boardScoreAdapter.getScoreBoard()
+        return boardScoreAdapter.getScoreBoard()
+    }
+    private fun setScoreText(boardScoreAdapter: BoardScoreAdapter){
+        viewModel.scoreList.observe(viewLifecycleOwner){
+            boardScoreAdapter.setScoreButtonTextGroup(it)
+        }
+        viewModel.bonusScore.observe(viewLifecycleOwner){
+            val bonus = "보너스! 35"
+            val nonBonus = "합계 $it"
+            if(it >= 63)boardScoreAdapter.setBonusScore(bonus)
+            else boardScoreAdapter.setBonusScore(nonBonus)
+        }
+
+        viewModel.score.observe(viewLifecycleOwner){
+            boardScoreAdapter.setScore("점수\n$it")
+        }
+    }
+    private fun setScoreButton(boardScoreAdapter: BoardScoreAdapter){
         val keyBoardDialog= BoardKeyboardDialog(binding.root.context,this@OnlyBoardFragment)
 
-        for(i in buttonList.indices){
-            buttonList[i].boardButton.setOnClickListener {
-                keyBoardDialog.show(i)
-            }
+        boardScoreAdapter.setScoreButtonGroup {
+            keyBoardDialog.show(it)
         }
-
-        buttonList[buttonList.size-1].boardButtonBoxImage.setImageResource(R.drawable.dice_yatch)
-        viewModel.scoreList.observe(viewLifecycleOwner, Observer { scoreList ->
-            for(i in scoreList.indices){
-                buttonList[i].boardButtonBoxText.text = scoreList[i].toString()
-                buttonList[i].boardButtonBoxImage.setImageResource(buttonImageList[i])
-            }
-        })
-
-        viewModel.bonusScore.observe(viewLifecycleOwner){
-            val bonus = "뽀나스! $it"
-            val nonBonus = "뽀나스 X"
-            if(it != 0)boardScoreBonusText.text = bonus
-            else boardScoreBonusText.text = nonBonus
-        }
-
-        boardScoreAfterButton.setOnClickListener {
-            viewModel.changeTurn()
-        }
-
-        boardScoreBeforeButton.setOnClickListener {
+    }
+    private fun setBottomButton(boardScoreAdapter: BoardScoreAdapter){
+        val leftClicked = {
             viewModel.beforeTurn()
         }
 
-        viewModel.score.observe(viewLifecycleOwner) {
-            val string = "점수\n$it"
-            boardScoreScoreText.text = string
+        val rightClicked = {
+            viewModel.changeTurn()
         }
-
+        boardScoreAdapter.setBottomButton(leftClicked, rightClicked)
     }
 
     override fun onDialogDismissed(index : Int, value: Int) = with(viewModel) {
