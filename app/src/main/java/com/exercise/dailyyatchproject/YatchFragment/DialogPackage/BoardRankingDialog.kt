@@ -18,6 +18,7 @@ class BoardRankingDialog(private val context : Context, private val userData: Li
     init {
         binding = BoardRankingDialogBinding.inflate(LayoutInflater.from(context))
 
+        Log.d("dialog", "dialog")
         dialog.setContentView(binding.root)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }

@@ -40,7 +40,7 @@ class MenuFragment : Fragment() {
 
     private fun initView(){
         binding.menuTestNavGame.setOnClickListener {
-            navController.navigate(R.id.action_menuFragment_to_userFragment)
+            navController.navigate(R.id.action_menuFragment_to_readyFragment)
         }
 
         binding.menuTestNavHistory.setOnClickListener {

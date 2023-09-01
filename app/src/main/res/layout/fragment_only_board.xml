@@ -62,7 +62,6 @@
             android:background="@drawable/user_board_item_background"
             android:layout_margin="10dp"
 
-
             app:layout_constraintBottom_toTopOf="@+id/only_board_layout"
             app:layout_constraintEnd_toStartOf="@+id/only_board_vertical65"
             app:layout_constraintStart_toStartOf="@+id/only_board_vertical35"

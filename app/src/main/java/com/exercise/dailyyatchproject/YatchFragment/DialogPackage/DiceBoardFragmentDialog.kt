@@ -1,40 +1,48 @@
 package com.exercise.dailyyatchproject.YatchFragment.DialogPackage
 
-import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.exercise.dailyyatchproject.R
+import com.exercise.dailyyatchproject.YatchFragment.OnDiceCallback
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.DiceViewModel
 import com.exercise.dailyyatchproject.databinding.DiceBoardDialogBinding
 
-class DiceBoardDialog(val context : Context)
-{
-    private val viewModel : DiceViewModel = DiceViewModel()
-    //private val viewModel : DiceViewModel = ViewModelProvider((context as AppCompatActivity))[DiceViewModel::class.java]
-    private val binding : DiceBoardDialogBinding = DiceBoardDialogBinding.inflate(LayoutInflater.from(context))
-    private val dialog = Dialog(context)
+class DiceBoardFragmentDialog(val onDiceCallback: OnDiceCallback) : DialogFragment() {
+    private lateinit var viewModel : DiceViewModel
+    private lateinit var binding : DiceBoardDialogBinding
+    private var count = 0
 
-    init {
+    fun show(manager: FragmentManager, tag: String?, count : Int) {
+        super.show(manager, tag)
+        this.count = count
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[DiceViewModel::class.java]
+        viewModel.setCastCount(count)
+        isCancelable = false
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DiceBoardDialogBinding.inflate(inflater, container, false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         initView()
-        initDialog()
-        dialog.setContentView(binding.root)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-
-    fun showDiceBoardDialog(){
-        dialog.show()
-    }
-
-    private fun initDialog(){
-        dialog.setCancelable(false)
-        dialog.setContentView(binding.root)
+        return binding.root
     }
 
     private fun initView(){
@@ -53,15 +61,27 @@ class DiceBoardDialog(val context : Context)
         )
         setSelectedDiceImage(imageList)
         setCastedDiceImage(imageList)
+        setDiceCountText()
+    }
+
+    private fun setDiceCountText(){
+        viewModel.castCount.observe(viewLifecycleOwner){
+            val text = "남은 횟수 : $it"
+            binding.diceBoardDialogCount.text = text
+        }
     }
 
     private fun initButton() = with(binding){
         diceDialogButton.setOnClickListener {
+            if(!viewModel.setCastCount()){
+                onDiceCallback.onDialogDismissed(viewModel.castCount.value!!, viewModel.getDiceList())
+                dismiss()
+            }
             viewModel.castingDice()
         }
 
         diceDialogScoreButton.setOnClickListener {
-            dialog.dismiss()
+            dismiss()
         }
 
         val clickedButtonList = listOf(
@@ -102,7 +122,7 @@ class DiceBoardDialog(val context : Context)
             diceBoardDialogSelectedDice5
         )
 
-        viewModel.selectList.observe(context as AppCompatActivity){selectList ->
+        viewModel.selectList.observe(context as AppCompatActivity){ selectList ->
             var selectIndex = 0
             selectList.forEach {
                 if(it == 0)
@@ -124,7 +144,7 @@ class DiceBoardDialog(val context : Context)
             diceBoardDialogDice5
         )
 
-        viewModel.diceList.observe(context as AppCompatActivity){diceList ->
+        viewModel.diceList.observe(context as AppCompatActivity){ diceList ->
             var buttonIndex = 0
             diceList.forEach {
                 if(it == 0)

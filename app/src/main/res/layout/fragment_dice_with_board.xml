@@ -10,56 +10,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView android:id="@+id/dice_board_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dice Board"
-            android:textAlignment="center"
-            android:textSize="40sp"
-            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal07"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        <TextView
+            android:id="@+id/dice_board_user_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/user_board_item_background"
+            android:fontFamily="@font/base_font"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="nick"
+            android:textColor="@color/default_text_color"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical65"
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical35"
             app:layout_constraintTop_toTopOf="parent" />
-        <TextView android:id="@+id/dice_board_user_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="user"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
 
-        <Button android:id="@+id/dice_board_score_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/dice_board_score_button"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/default_button_color"
+            android:fontFamily="@font/base_font"
             android:text="점수"
-            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
-            app:layout_constraintEnd_toStartOf="@+id/dice_board_title_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeMinTextSize="15sp"
 
-        <ImageButton android:id="@+id/dice_board_setting_button"
+            app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
+            app:layout_constraintEnd_toStartOf="@+id/only_board_vertical35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <ImageButton
+            android:id="@+id/dice_board_setting_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_settings_24"
             app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dice_board_title_text"
-            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal07" />
+            app:layout_constraintStart_toStartOf="@+id/only_board_vertical65"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <fragment
-            android:id="@+id/dice_board_nav_fragment"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/dice_board_layout"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/dice_graph"
+            android:clipChildren="false"
             app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal80"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal15"
-            app:defaultNavHost ="true"
-            />
+            app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal15" />
+
 
         <Button
             android:id="@+id/dice_board_dice_button"
@@ -68,7 +76,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:text="Dice"
-            android:textSize="40sp"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeMinTextSize="15sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +87,7 @@
             app:layout_constraintTop_toTopOf="@+id/dice_board_horizontal90" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/dice_board_horizontal90"
@@ -143,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.2"/>
+                app:layout_constraintGuide_percent="0.2" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/dice_board_selected_vertical40"
@@ -167,19 +179,25 @@
                 app:layout_constraintGuide_begin="329dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/dice_board_horizontal07"
+            android:id="@+id/only_board_vertical35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.07" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/only_board_vertical65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/dice_board_horizontal15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15" />
+            app:layout_constraintGuide_percent="0.10" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/dice_board_horizontal80"

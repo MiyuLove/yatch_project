@@ -228,12 +228,12 @@
     <TextView
         android:id="@+id/board_score_score_text"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="@drawable/user_board_item_background"
         android:fontFamily="@font/base_font"
         android:gravity="center"
         android:autoSizeTextType="uniform"
-        android:autoSizeMaxTextSize="40sp"
+        android:autoSizeMaxTextSize="30sp"
         android:autoSizeMinTextSize="15sp"
         android:maxLines="2"
         android:text="Score\n10"
@@ -285,7 +285,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.85"/>
 
 
     <androidx.constraintlayout.widget.Guideline

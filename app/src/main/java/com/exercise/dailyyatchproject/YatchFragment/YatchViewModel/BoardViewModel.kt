@@ -36,6 +36,20 @@ class BoardViewModel : ViewModel() {
 
     private var userScoreData = mutableListOf<MutableList<Int>>()
 
+    val diceList = MutableLiveData(List(5){0})
+//    val diceList : LiveData<List<Int>>
+//        get() = _diceList
+    var castCount = 3
+
+    fun changeDiceList(_count : Int, _diceList : List<Int>){
+        diceList.value = _diceList
+        Log.d("BoardViewModel", diceList.value.toString())
+        castCount = _count
+        if(castCount <= 0)
+            castCount = 3
+    }
+
+
     fun getUserData() = userDataList
     fun setUserData(mainUserDataList : List<MainUserData>){
         userDataList = mainUserDataList
@@ -106,7 +120,6 @@ class BoardViewModel : ViewModel() {
     private fun saveUserScore(){
         userScoreData[userTurn] = _scoreList.value!!.toMutableList()
     }
-
 
     private fun changeUser(){
         _scoreList.value = userScoreData[userTurn]

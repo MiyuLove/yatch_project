@@ -32,20 +32,7 @@ class ScoreFragment : Fragment() {
     ): View? {
         binding = FragmentScoreBinding.inflate(inflater, container, false)
 
-        initView()
 
         return binding.root
-    }
-
-    private fun initView(){
-        binding.diceScoreAfterButton.setOnClickListener {
-        }
-        binding.diceScoreBeforeButton.setOnClickListener {
-            diceViewModel.userPlus()
-        }
-
-        diceViewModel.userTurn.observe(viewLifecycleOwner, Observer {
-            binding.diceScoreText.text = it.toString()
-        })
     }
 }

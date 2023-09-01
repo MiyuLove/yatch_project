@@ -5,33 +5,36 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.random.Random
+import kotlin.text.Typography.tm
 
 class DiceViewModel() : ViewModel() {
-    private var playerTurn = MutableLiveData(0)
-    val userTurn : LiveData<Int>
-        get() = playerTurn
-    var trueTurn = 0
-
-    private var userTurnMax = 0
-
-    private var _scoreList = MutableLiveData(List(14) { 0 })
-    val scoreList : LiveData<List<Int>>
-        get() = _scoreList
-
-    private var _diceList = MutableLiveData(List(5) { 0 })
+    //-1은 초기상태라 변경해야만
+    private var _diceList = MutableLiveData(List(5) { -1 })
     val diceList : LiveData<List<Int>>
         get() = _diceList
-
-    var resultList = mutableListOf<List<Int>>()
 
     private var _selectList = MutableLiveData(List(5) { 0 })
     val selectList : LiveData<List<Int>>
         get() = _selectList
 
+    private var _castCount = MutableLiveData(0)
+    val castCount : LiveData<Int>
+        get() = _castCount
+
+    fun setCastCount(count : Int){
+        _castCount.value = count
+    }
+
+    fun setCastCount() : Boolean{
+        _castCount.value = _castCount.value!! - 1
+        return castCount.value!! > 0
+    }
 
     fun castingDice(){
         val tmpDiceList = _diceList.value!!.toMutableList()
         val randInt = Random
+
+        //-1은 선택 받아서 변경할 수 없는 상태
         for(i in tmpDiceList.indices){
             if(tmpDiceList[i] != 0)
                 tmpDiceList[i] = randInt.nextInt(1,7)
@@ -40,65 +43,30 @@ class DiceViewModel() : ViewModel() {
     }
 
     fun clickDice(diceNumber : Int){
-        val tmpDiceList = _diceList.value!!.toMutableList()
-        val tmpSelectList = _selectList.value!!.toMutableList()
+        val newDiceList = _diceList.value!!.toMutableList()
+        val newSelectList = _selectList.value!!.toMutableList()
 
-        if(tmpDiceList[diceNumber] == 0)
-            return
+        if(newDiceList[diceNumber] == -1) return
 
-        tmpSelectList[diceNumber] = tmpDiceList[diceNumber]
-        tmpDiceList[diceNumber] = 0
+        var tmpValue = newDiceList[diceNumber]
+        newDiceList[diceNumber] = newSelectList[diceNumber]
+        newSelectList[diceNumber] = tmpValue
+        _diceList.value = newDiceList
+        _selectList.value = newSelectList
+        Log.d("viewModel", newSelectList.toString())
+        Log.d("viewModel", newDiceList.toString())
 
-        _diceList.value = tmpDiceList
-        _selectList.value = tmpSelectList
+        return
     }
 
-    fun clickSelectedDice(diceNumber: Int){
-        val tmpSelectList = _selectList.value!!.toMutableList()
-        val tmpDiceList = _diceList.value!!.toMutableList()
+    fun getDiceList() : List<Int>{
+        val returnList = mutableListOf(0,0,0,0,0)
+        for(i in _diceList.value!!.indices){
+            if(_diceList.value!![i] == -1)
+                return returnList
 
-        if(tmpSelectList[diceNumber] == 0)
-            return
-
-        tmpDiceList[diceNumber] = tmpSelectList[diceNumber]
-        tmpSelectList[diceNumber] = 0
-
-        _selectList.value = tmpSelectList
-        _diceList.value = tmpDiceList
+            returnList[i] = if(_diceList.value!![i] != 0) _diceList.value!![i] else _selectList.value!![i]
+        }
+        return returnList
     }
-
-    fun initDiceList(){
-        _diceList.value = listOf(-1,-1,-1,-1,-1,)
-    }
-
-    fun initSelecttList(){
-        _selectList.value = listOf(0,0,0,0,0)
-    }
-
-    private lateinit var userPlayDataList : MutableList<UserPlayData>
-
-    fun castDice(diceNumber : Int){
-
-    }
-    //인원 명단과 수 확인
-    fun setUserPlayDataList(userDataList: List<String>){
-        val userPlayDataMutableList = mutableListOf<UserPlayData>()
-        userTurnMax = userDataList.size
-    }
-
-    fun userPlus(){
-        playerTurn.value = userTurn.value?.plus(10)
-        Log.d("board ", playerTurn.value.toString())
-    }
-
-    fun setTurn(){
-
-    }
-
-    private data class UserPlayData(
-        val resultList : List<List<Int>>,
-        val selectedList : List<List<Int>>,
-        val selectedBoard : Int,
-    )
-
 }

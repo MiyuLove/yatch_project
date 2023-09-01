@@ -1,28 +1,36 @@
 package com.exercise.dailyyatchproject.YatchFragment
 
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.exercise.dailyyatchproject.MainActivity
 import com.exercise.dailyyatchproject.R
+import com.exercise.dailyyatchproject.YatchFragment.Board.BoardScoreAdapter
 import com.exercise.dailyyatchproject.YatchFragment.DialogPackage.BoardRankingDialog
+import com.exercise.dailyyatchproject.YatchFragment.DialogPackage.DiceBoardDialog
+import com.exercise.dailyyatchproject.YatchFragment.DialogPackage.DiceBoardFragmentDialog
+import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.BoardViewModel
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.DiceViewModel
 import com.exercise.dailyyatchproject.YatchFragment.YatchViewModel.MainViewModel
 import com.exercise.dailyyatchproject.databinding.FragmentDiceWithBoardBinding
 
-class DiceWithBoardFragment : Fragment(){
+class DiceWithBoardFragment : Fragment(), OnDiceCallback{
     lateinit var binding : FragmentDiceWithBoardBinding
-    private val diceViewModel : DiceViewModel by viewModels()
+    lateinit var viewModel : BoardViewModel
     private lateinit var mainViewModel : MainViewModel
     private lateinit var navController: NavController
-    private lateinit var childNavController : NavController
-    private var navigatorFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +39,8 @@ class DiceWithBoardFragment : Fragment(){
 
     private fun initViewModel(){
         mainViewModel = (requireActivity() as MainActivity).mainViewModel
-        val mutableList = mutableListOf<String>()
-        mainViewModel.getMainUserData().forEach {
-            mutableList.add(it.nickname)
-        }
-        mainViewModel.setDiceViewModel(diceViewModel)
+        viewModel = ViewModelProvider(this)[BoardViewModel::class.java]
+        viewModel.setUserData(mainViewModel.getMainUserData())
     }
 
     override fun onCreateView(
@@ -43,56 +48,96 @@ class DiceWithBoardFragment : Fragment(){
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentDiceWithBoardBinding.inflate(inflater, container, false)
+        binding.diceBoardLayout.addView(setScoreBindingView(inflater,container))
         initView()
 
-        Log.d("board parent", diceViewModel.toString())
         return binding.root
     }
 
-    private fun initView(){
-        initButton()
-        initSelectedDiceButton()
-        childNavController = childFragmentManager.findFragmentById(R.id.dice_board_nav_fragment)!!.findNavController()
+    private fun initView() = with(binding){
         navController = findNavController()
+        //val diceBoardDialog = DiceBoardDialog(binding.root.context)
+        val scoreBoardDialog = BoardRankingDialog(binding.root.context, viewModel.getUserData())
+
+        diceBoardDiceButton.setOnClickListener {
+            DiceBoardFragmentDialog(this@DiceWithBoardFragment).show(requireFragmentManager(),"dialog_tag", viewModel.castCount)
+
+        }
+
+        diceBoardScoreButton.setOnClickListener {
+            scoreBoardDialog.show()
+        }
+
+        initSelectedDiceButton()
     }
 
-    private fun initButton(){
-        binding.diceBoardDiceButton.setOnClickListener {
-            diceViewModel.userPlus()
-            if(navigatorFlag) {
-                childNavController.navigate(R.id.action_scoreFragment_to_diceFragment)
-            }
-            else {
-                childNavController.navigate(R.id.action_diceFragment_to_scoreFragment)
-            }
-            navigatorFlag = !navigatorFlag
-        }
+    private fun setScoreBindingView(inflater: LayoutInflater, container: ViewGroup?) : ConstraintLayout {
+        val boardScoreAdapter = BoardScoreAdapter(inflater,container,false)
 
-        binding.diceBoardScoreButton.setOnClickListener {
-            val diceScoreDialog = BoardRankingDialog(binding.root.context, mainViewModel.getMainUserData())
-            diceScoreDialog.show()
-        }
+        setScoreText(boardScoreAdapter)
+        setBottomButton(boardScoreAdapter)
 
-        binding.diceBoardSettingButton.setOnClickListener {
-            diceViewModel.initDiceList()
-            diceViewModel.initSelecttList()
-        }
-
-
+        boardScoreAdapter.getScoreBoard()
+        return boardScoreAdapter.getScoreBoard()
     }
 
-    private fun initSelectedDiceButton(){
+    private fun setScoreText(boardScoreAdapter: BoardScoreAdapter){
+        viewModel.scoreList.observe(viewLifecycleOwner){
+            boardScoreAdapter.setScoreButtonTextGroup(it)
+        }
+        viewModel.bonusScore.observe(viewLifecycleOwner){
+            val bonus = "보너스! 35"
+            val nonBonus = "합계 $it"
+            if(it >= 63)boardScoreAdapter.setBonusScore(bonus)
+            else boardScoreAdapter.setBonusScore(nonBonus)
+        }
+
+        viewModel.score.observe(viewLifecycleOwner){
+            boardScoreAdapter.setScore("점수\n$it")
+        }
+    }
+
+    private fun setBottomButton(boardScoreAdapter: BoardScoreAdapter){
+        val leftClicked = {
+            viewModel.beforeTurn()
+        }
+
+        val rightClicked = {
+            viewModel.changeTurn()
+        }
+        boardScoreAdapter.setBottomButton(leftClicked, rightClicked)
+    }
+    private fun initSelectedDiceButton() = with(binding){
         val selectedDiceList = listOf(
-            binding.diceBoardSelectedDice1,
-            binding.diceBoardSelectedDice2,
-            binding.diceBoardSelectedDice3,
-            binding.diceBoardSelectedDice4,
-            binding.diceBoardSelectedDice5,
+            diceBoardSelectedDice1,
+            diceBoardSelectedDice2,
+            diceBoardSelectedDice3,
+            diceBoardSelectedDice4,
+            diceBoardSelectedDice5,
         )
-        for(i in selectedDiceList.indices){
-            selectedDiceList[i].setOnClickListener {
-                diceViewModel.clickSelectedDice(i)
+
+        val imageList = listOf(
+            R.drawable.ic_launcher_foreground,
+            R.drawable.dice_num1,
+            R.drawable.dice_num2,
+            R.drawable.dice_num3,
+            R.drawable.dice_num4,
+            R.drawable.dice_num5,
+            R.drawable.dice_num6,
+        )
+
+        viewModel.diceList.observe(viewLifecycleOwner){
+            for(i in it.indices){
+                selectedDiceList[i].setImageResource(imageList[it[i]])
             }
         }
     }
+
+    override fun onDialogDismissed(count: Int, value: List<Int>) {
+        viewModel.changeDiceList(count, value)
+    }
+}
+
+interface OnDiceCallback{
+    fun onDialogDismissed(count : Int, value : List<Int>)
 }
